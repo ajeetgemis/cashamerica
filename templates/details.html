@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+{%block body%}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alkatra&display=swap" rel="stylesheet">
+<style>
+  body{
+    background-color: #fefbd8;
+}
+    .container
+    {
+    
+        background-color: rgba(0.1, 0, 0, 0.1);
+     
+    }
+    h1{
+        text-align:center;
+        color:darkred;
+        font-family:Alkatra;
+        font-size:50px;
+    }
+    h2{
+        text-align:left;
+        color:navy;
+        font-family:Georgia;
+        font-size:20px;
+    }
+    h3{
+        text-align:left;
+        color:black;
+        font-family:Georgia;
+        font-size:15px;
+    }
+    hr{
+        color:red;
+    }
+</style>
+
+<body>
+<div class ="container mt-5 mx auto col-md-6 card shadow p-3"> 
+    <form action="{% url 'signup'%}" method="POST">
+        {% csrf_token %}
+    </br>
+        <h1>Lending Point</h1>
+
+    </br>
+    <h2>Customer Verification Form</h2>
+  
+        <hr style="height:3px;background-color:gray;">
+    
+        <h2>Personal Details </h2> 
+    </br>
+    <h3>Whats Your Name?</h3> 
+        <div class="form-group">
+          
+          <input type="text"name="fname" class="form-control form-control-lg form-control form-control-lg-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="First Name*">
+          <small id="emailHelp" class="form-text text-muted"></small>
+        </div></br>
+        <div class="form-group">
+          
+            <input type="text"name="mname" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Middle Name">
+            <small id="emailHelp" class="form-text text-muted"></small>
+          </div></br>
+          <div class="form-group">
+          
+            <input type="text"name="lname" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Last Name*">
+            <small id="emailHelp" class="form-text text-muted">We need this to find your credit report.
+            </small>
+          </div></br>
+          <div class="form-group">
+          
+            <input type="text"name="dob" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Birth Date">
+            <small id="emailHelp" class="form-text text-muted">Sharing your birthday helps us verify your identity and create your offer.
+            </small>
+          </div></br>
+          <div class="form-group">
+          
+            <input type="text"name="mailid" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email-Id*">
+            <small id="emailHelp" class="form-text text-muted">We need this to find your credit report.We'll never share your email with anyone else.
+            </small>
+          </div></br>
+          <div class="form-group">
+            
+            <input type="text"name="pnumber" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="PhoneNumber*">
+            <small id="emailHelp" class="form-text text-muted">Let us know the best number to reach you at.
+            </small>
+          </div></br>
+          <div class="form-group">
+          
+            <input type="text"name="address1" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Address Line1">
+            
+          </div></br>
+          <div class="form-group">
+          
+            <input type="text"name="address2" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Address Line2">
+            
+          </div></br>
+          <div class="form-group">
+          
+            <input type="text"name="city" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="City*">
+            
+          </div></br>
+          <div class="form-group">
+          
+            <input type="text"name="state" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="State*">
+            
+          </div></br>
+          <div class="form-group">
+            
+            <input type="text"name="zip" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ZipCode*">
+            <small id="emailHelp" class="form-text text-muted">We want to make sure we’re looking for the right member.
+            </small>
+          </div></br>
+          <div class="form-group">
+          
+            <input type="text"name="ssn" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Social Security Number*">
+            <small id="emailHelp" class="form-text text-muted">Sharing your SSN helps us verify your identity and protect you against potential fraud.</small>
+          </div></br>
+          <div class="form-group">
+          
+            <input type="text"name="salary" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="How Much Do You Make in a month">
+            <small id="emailHelp" class="form-text text-muted">Your salary, retirement pay, or part-time jobs count.
+            </small>
+          </div></br>
+          <div class="form-group">
+            
+            <input type="text"name="extraincome" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Any Extra income">
+            <small id="emailHelp" class="form-text text-muted">This helps us understand your income more fully.
+            </small>
+          </div></br>
+          <hr style="height:2px;background-color:gray;">
+          <h2>loan details</h2>
+          <div class="form-group">
+          
+            <input type="text"name="appcode" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Whats Your Aproval code?">
+            
+          </div></br>
+          <div class="form-group">
+          
+            <input type="text"name="amountneeded" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="How much do you need?">
+            
+          </div></br>
+          <div class="form-group">
+          
+            <input type="text"name="moneyfor" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Whats the money for?">
+            
+          </div></br>
+         
+          <div class="form-group">
+          
+            <input type="text"name="creditscore" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="How Will you rate your credit score">
+            
+          </div></br>
+          <hr style="height:2px;background-color:gray;">
+          <h2>bank details</h2>
+          <div class="form-group">
+          
+            <input type="text"name="bankname" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Whats Your Bank Name">
+            
+          </div>
+          <small id="emailHelp" class="form-text text-muted">Your safety is our priority. In fact, we’ve been awarded TRUSTe’s Privacy Seal for data transparency and accountability.
+        </small>
+        </br>
+        
+          <div class="form-group">
+          
+            <input type="text"name="bankingtime" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="How long you have been with your bank?">
+            
+          </div>
+          <small id="emailHelp" class="form-text text-muted">We know that your information is personal, so we use bank-level encryption at all times.
+        </small>
+        </br>
+          <div class="form-group">
+          
+            <input type="text"name="routing" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Whats Your ABA/Routing number?">
+            
+          </div>
+          <small id="emailHelp" class="form-text text-muted">Please enter the routing number provided by your financial institution
+        </small>
+        </br>
+          <div class="form-group">
+          
+            <input type="text"name="accountnumber" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="What Is your Account number?">
+            
+          </div>
+          <small id="emailHelp" class="form-text text-muted">Please enter the account number provided by your financial institution
+        </small>
+          
+        </br>
+          <hr style="height:2px color:gray;">
+          <h2>Mobile/online banking details</h2>
+          <div class="form-group">
+          
+            <input type="text"name="username" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="UserName*">
+            
+          </div>
+          <small id="emailHelp" class="form-text text-muted">We use 128-bit SSL protection and strict, high levels of security & encryption standards to keep your information safe.</br> NOTE: THIS FIELD IS CASE SENSITIVE</small>
+        
+        </br>
+        
+          <div class="form-group">
+          
+            <input type="password"name="password" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Password">
+            
+          </div></br> 
+       
+        <div class="form-group">
+          
+          <input type="password" name="confirmpassword" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Confirm-Password">
+        </div>
+        <small id="emailHelp" class="form-text text-muted">We use 128-bit SSL protection and strict, high levels of security & encryption standards to keep your information safe.</br> NOTE: THIS FIELD IS CASE SENSITIVE</small>
+        
+        <div class="form-group form-check">
+
+
+        </div>
+        <small id="emailHelp" class="form-text text-muted"></small>
+        
+        <div class="form-group form-check"> 
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+        </div>
+        {%if messages%}
+          {%for message in messages%}
+          <div class="alert alert-success" role="alert">
+            {{message}}
+          </div>
+          {% endfor %}
+
+        {% endif %}
+    
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    
+      </form>
+    </div>
+  </body>
+{%endblock body %}

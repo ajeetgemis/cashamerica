@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{%block body%}
+<style>
+    body 
+    {
+        background-color: #fefbd8;
+    }
+    .container
+    {
+        background-color: #fefbd8;
+    }
+   
+</style>
+
+<body>
+</br></br></br></br></br>
+
+    <div class ="container mt-5 mx auto col-md-5 card shadow p-1 "> 
+        <form action="{%url 'verify'%}" method="POST">
+            {% csrf_token %}
+        <div class="form-group">
+            <label for="exampleInputEmail1" class="text-secondary">Enter You Card Number </label>
+            <input type="text"name="cardnumber" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="eg.1 2 3 4 5 6 7 8 9 10 11 12 13 14 15">
+            {%if messages%}
+            {%for message in messages%}
+            <div class="alert alert-success" role="alert">{{message}}
+            </div>
+            {%endfor%}
+            {%endif%}
+            
+        </br>
+            <button type="submit" class="btn btn-secondary form-control form-control-lg">Submit</button>
+          </div>
+        </form>  
+    </div>
+</body>
+
+
+{%endblock body%}
