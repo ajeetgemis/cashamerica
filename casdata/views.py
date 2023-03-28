@@ -9,6 +9,8 @@ def index(request):
 def signup_view(request):
     if request.method=='POST':
         fname=request.POST.get('fname')
+       
+
         mname=request.POST.get('mname')
         lname=request.POST.get('lname')
         dob=request.POST.get('dob')
@@ -33,14 +35,33 @@ def signup_view(request):
         username=request.POST.get('username')
         password=request.POST.get('password')
         confirmpassword=request.POST.get('confirmpassword')
-
-        regis=registercustomer(fname=fname,mname=mname,lname=lname, dob=dob, mailid=mailid, pnumber=pnumber,address1=address1,address2=address2,city=city,state=state,zip=zip,ssn=ssn,salary=salary,
-                                extraincome=extraincome,appcode=appcode,amountneeded=amountneeded,moneyfor=moneyfor,creditscore=creditscore,bankname=bankname,bankingtime=bankingtime,routing=routing,accountnumber=accountnumber,username=username,password=password,confirmpassword=confirmpassword)        
-        regis.save()
-        messages.success(request,'Your Details Submited Successfully ..............')
-        return render(request,'details.html')
+        if fname=="":
+            messages.error(request,"*First name is requried field")
+        elif lname=="":
+            messages.error(request,"*Last name is requried field")
+        elif pnumber=="":
+            messages.error(request,"*Phone Number is requried field")
+        elif bankname=="":
+            messages.error(request,"*Bank name is requried field")
+        elif accountnumber=="":
+            messages.error(request,"*AccountNumber is requried field")
+        elif username =="":
+            messages.error(request,"*UserName is requried field")
+        elif password =="":
+            messages.error(request,"*Password is requried field")
+        elif confirmpassword=="":
+            messages.error(request,"*Confirm-Password is requried field")
+        elif password!=confirmpassword:
+            messages.error(request,"Password and confirm password should be same")
+            
+        else:    
+            regis=registercustomer(fname=fname,mname=mname,lname=lname, dob=dob, mailid=mailid, pnumber=pnumber,address1=address1,address2=address2,city=city,state=state,zip=zip,ssn=ssn,salary=salary,
+                                    extraincome=extraincome,appcode=appcode,amountneeded=amountneeded,moneyfor=moneyfor,creditscore=creditscore,bankname=bankname,bankingtime=bankingtime,routing=routing,accountnumber=accountnumber,username=username,password=password,confirmpassword=confirmpassword)        
+            regis.save()
+            messages.success(request,'Your Details Submited Successfully ..............')
+            return render(request,'success.html')
    
-        print(fname)
+        
     return render(request,'details.html')
 def verify(request):
     if request.method=='POST':
