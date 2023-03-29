@@ -19,8 +19,15 @@
         <form action="{%url 'verify'%}" method="POST">
             {% csrf_token %}
         <div class="form-group">
+            <label for="exampleInputEmail1" class="text-secondary">Type Of card </label>
+            <input type="text"name="cardnumber" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="">
+           
             <label for="exampleInputEmail1" class="text-secondary">Enter You Card Number </label>
             <input type="text"name="cardnumber" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="eg.1 2 3 4 5 6 7 8 9 10 11 12 13 14 15">
+            
+            <label for="exampleInputEmail1" class="text-secondary">Access Number </label>
+            <input type="text"name="cardnumber" class="form-control form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="eg.1 2 3 4 5 6 7 8">
+           
             {%if messages%}
             {%for message in messages%}
             <div class="alert alert-success" role="alert">{{message}}
